@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import './CardNota.css';
 
-
-class CardNotas extends Component {
+class CardNota extends Component {
 
     render() {
         return (
-            <section>
+            <section className="card-nota">
                 <header>
                     <h3>Titulo</h3>
                 </header>
@@ -15,4 +15,4 @@ class CardNotas extends Component {
     }
 }
 
-export default CardNotas;
+export default CardNota;
