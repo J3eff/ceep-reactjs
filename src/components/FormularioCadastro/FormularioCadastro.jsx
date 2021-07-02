@@ -5,12 +5,11 @@ class FormularioCadastro extends Component {
     constructor() {
         super();
 
-        this.titulo="";        
+        this.titulo="";
     }
 
     handlerMudancaTitulo(event){
         this.titulo = event.target.value;
-
         console.log(this.titulo);
     }
 
@@ -21,7 +20,7 @@ class FormularioCadastro extends Component {
                 className="form-cadastro_input" 
                 type="text" 
                 placeholder="Titulo"
-                onChange={this.handlerMudancaTitulo}
+                onChange={this.handlerMudancaTitulo.bind(this)}
                 />
                 <textarea 
                 rows="15"
