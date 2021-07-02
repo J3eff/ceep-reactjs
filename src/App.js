@@ -4,16 +4,23 @@ import FormularioCadastro from './components/FormularioCadastro';
 import './assets/App.css'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.notas = [];
+  }
 
-  criarNota(titulo, texto){
-    console.log(`uma nova nota foi criada ` + titulo + ` ` + texto);
+  criarNota(titulo, texto) {
+    const novaNota = {titulo, texto};    
+    this.notas.push(novaNota);
+    console.log(this.notas.length);
   }
 
   render() {
     return (
       <section className="conteudo">
-        <FormularioCadastro criarNota={this.criarNota}/> //Passa uma propriedade para meu formulario 
-        <ListaDeNotas />
+        {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro*/}
+        <FormularioCadastro criarNota={this.criarNota.bind(this)} />
+        <ListaDeNotas notas={this.notas} />
       </section>
     );
   }
