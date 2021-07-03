@@ -6,13 +6,19 @@ import './assets/App.css'
 class App extends Component {
   constructor() {
     super();
-    this.notas = [];
+   
+    this.state = {
+      notas: []
+    }
   }
 
   criarNota(titulo, texto) {
-    const novaNota = {titulo, texto};    
-    this.notas.push(novaNota);
-    console.log(this.notas.length);
+    const novaNota = { titulo, texto };
+    const novoArrayNotas = [...this.state.notas, novaNota]
+    
+    this.setState({
+      notas: novoArrayNotas
+    })
   }
 
   render() {
@@ -20,7 +26,7 @@ class App extends Component {
       <section className="conteudo">
         {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro*/}
         <FormularioCadastro criarNota={this.criarNota.bind(this)} />
-        <ListaDeNotas notas={this.notas} />
+        <ListaDeNotas notas={this.state.notas} />
       </section>
     );
   }
