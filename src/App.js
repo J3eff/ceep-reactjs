@@ -15,9 +15,19 @@ class App extends Component {
   criarNota(titulo, texto) {
     const novaNota = { titulo, texto };
     const novoArrayNotas = [...this.state.notas, novaNota]
-    
-    this.setState({
+    const NovoEstado = {
       notas: novoArrayNotas
+    }
+    
+    this.setState(NovoEstado)
+  }
+
+  deletarNota(index){
+    let arrayNotas = this.state.notas;
+    arrayNotas.splice(index,1);
+
+    this.setState({
+      notas: arrayNotas
     })
   }
 
@@ -26,7 +36,9 @@ class App extends Component {
       <section className="conteudo">
         {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro*/}
         <FormularioCadastro criarNota={this.criarNota.bind(this)} />
-        <ListaDeNotas notas={this.state.notas} />
+        <ListaDeNotas 
+        apagarNota={this.deletarNota.bind(this)}
+        notas={this.state.notas} />
       </section>
     );
   }
