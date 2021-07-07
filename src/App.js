@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ListaDeNotas from './components/ListaDeNotas';
 import FormularioCadastro from './components/FormularioCadastro';
+import ListaDeCategorias from './components/ListaDeCategorias'
 import './assets/App.css'
 
 class App extends Component {
   constructor() {
     super();
-   
+
     this.state = {
       notas: []
     }
@@ -18,13 +19,13 @@ class App extends Component {
     const NovoEstado = {
       notas: novoArrayNotas
     }
-    
+
     this.setState(NovoEstado)
   }
 
-  deletarNota(index){
+  deletarNota(index) {
     let arrayNotas = this.state.notas;
-    arrayNotas.splice(index,1);
+    arrayNotas.splice(index, 1);
 
     this.setState({
       notas: arrayNotas
@@ -36,9 +37,12 @@ class App extends Component {
       <section className="conteudo">
         {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro*/}
         <FormularioCadastro criarNota={this.criarNota.bind(this)} />
-        <ListaDeNotas 
-        apagarNota={this.deletarNota.bind(this)}
-        notas={this.state.notas} />
+        <main className="conteudo-principal">
+          <ListaDeCategorias />
+          <ListaDeNotas
+            apagarNota={this.deletarNota.bind(this)}
+            notas={this.state.notas} />
+        </main>
       </section>
     );
   }
