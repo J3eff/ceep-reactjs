@@ -5,10 +5,10 @@ import './estilo.css';
 class ListaDeCategorias extends Component {
 
     _handlerEventoIput(ev) {
-        console.log(ev)
         if (ev.key === "Enter") {
             let valorCategoria = ev.target.value;
             this.props.adicionarCategoria(valorCategoria);
+            ev.target.value = '';
         }
     }
 
@@ -19,7 +19,7 @@ class ListaDeCategorias extends Component {
                     {this.props.categorias.map((categoria, index) => {
                         return <li key={index} className="lista-categorias_item" >{categoria}</li>
                     })}
-a
+
                 </ul>
                 <input
                     type="text"

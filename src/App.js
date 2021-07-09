@@ -46,7 +46,10 @@ class App extends Component {
       <section className="conteudo">
 
         {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro*/}
-        <FormularioCadastro criarNota={this.criarNota.bind(this)} />
+        <FormularioCadastro 
+          categorias={this.state.categorias}
+          criarNota={this.criarNota.bind(this)} 
+        />
 
         <main className="conteudo-principal">
 
