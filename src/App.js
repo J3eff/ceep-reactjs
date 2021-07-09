@@ -10,18 +10,17 @@ class App extends Component {
 
     this.state = {
       notas: [],
-      categorias: [],
+      categorias: ["Trabalho", "Esportes"],
     };
   }
 
   criarNota(titulo, texto) {
     const novaNota = { titulo, texto };
     const novoArrayNotas = [...this.state.notas, novaNota]
-    const NovoEstado = {
-      notas: novoArrayNotas
-    }
 
-    this.setState(NovoEstado)
+    this.setState({
+      notas: novoArrayNotas
+    })
   }
 
   deletarNota(index) {
@@ -33,16 +32,34 @@ class App extends Component {
     })
   }
 
+  adicionarCategoria(nomeCategoria){
+    const novoArrayCategorias = [...this.state.categorias, nomeCategoria];
+
+    this.setState({
+      categorias: novoArrayCategorias
+    })
+  }
+  
+
   render() {
     return (
       <section className="conteudo">
+
         {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro*/}
         <FormularioCadastro criarNota={this.criarNota.bind(this)} />
+
         <main className="conteudo-principal">
-          <ListaDeCategorias />
-          <ListaDeNotas
+
+          <ListaDeCategorias 
+            categorias={this.state.categorias} 
+            adicionarCategoria={this.adicionarCategoria.bind(this)}
+            />
+
+          <ListaDeNotas          
             apagarNota={this.deletarNota.bind(this)}
-            notas={this.state.notas} />
+            notas={this.state.notas} 
+          />
+
         </main>
       </section>
     );

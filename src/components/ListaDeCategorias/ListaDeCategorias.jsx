@@ -4,9 +4,10 @@ import './estilo.css';
 
 class ListaDeCategorias extends Component {
 
-    _handlerEventoIput(ev){
-        if(ev.key === "Enter"){
-            console.log("Adicionar categoria!")
+    _handlerEventoIput(ev) {
+        if (ev.key === "Enter") {
+            let valorCategoria = ev.target.value;
+            this.props.adicionarCategoria(valorCategoria);
         }
     }
 
@@ -14,14 +15,15 @@ class ListaDeCategorias extends Component {
         return (
             <section className="lista-categorias">
                 <ul className="lista-categorias_lista">
-                    <li className="lista-categorias_item">Categorias</li>
-                    <li className="lista-categorias_item">Categorias</li>
-                    <li className="lista-categorias_item">Categorias</li>
+                    {this.props.categorias.map((categoria, index) => {
+                        return <li key={index} className="lista-categorias_item" >{categoria}</li>
+                    })}
+
                 </ul>
-                <input                    
+                <input
                     type="text"
                     className="lista-categorias_input"
-                    placeholder="Adicionar categoria" 
+                    placeholder="Adicionar categoria"
                     onKeyUp={this._handlerEventoIput.bind(this)}
                 />
             </section>
