@@ -10,7 +10,7 @@ class App extends Component {
 
     this.state = {
       notas: [],
-      categorias: ["Trabalho", "Esportes"],
+      categorias: [],
     };
   }
 
@@ -32,7 +32,7 @@ class App extends Component {
     })
   }
 
-  adicionarCategoria(nomeCategoria){
+  adicionarCategoria(nomeCategoria){    
     const novoArrayCategorias = [...this.state.categorias, nomeCategoria];
 
     this.setState({
