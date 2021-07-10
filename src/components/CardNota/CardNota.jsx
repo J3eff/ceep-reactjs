@@ -17,6 +17,10 @@ apagar(){
 
                     {/* Botão de exclusão */}
                     <DeleteSVG onClick={this.apagar.bind(this)} />
+
+                    {/*Categoria do CARD*/}
+                    <h4>{this.props.categoria}</h4>
+
                 </header>
                 <p className="card-nota_texto">{this.props.texto}</p>
             </section>            
