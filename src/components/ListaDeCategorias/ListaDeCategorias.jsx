@@ -7,7 +7,7 @@ class ListaDeCategorias extends Component {
         super();
 
         this.state = {
-            categorias: [dd]
+            categorias: []
         }  
         
        this._novasCategorias =  this._novasCategorias.bind(this)
