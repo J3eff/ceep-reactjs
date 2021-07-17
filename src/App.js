@@ -14,14 +14,15 @@ class App extends Component {
     this.notas = new ArrayDeNotas();
   }
 
+
   render() {
     return (
       <section className="conteudo">
 
         {/* Passa uma propriedade para meu formulario, estou injetando uma dependencia(DI) no meu cadastro */}
         <FormularioCadastro 
-          categorias={this.categorias.categorias}
-          criarNota={this.notas.criarNota} 
+          categorias={this.categorias}
+          criarNota={this.notas.adicionarNota.bind(this.notas)} 
         />
 
         <main className="conteudo-principal">
@@ -32,8 +33,8 @@ class App extends Component {
             />
 
           <ListaDeNotas          
-            apagarNota={this.notas.apagarNota}
-            notas={this.notas.notas} 
+            apagarNota={this.notas.apagarNota.bind(this.notas)}
+            notas={this.notas} 
           />
 
         </main>
