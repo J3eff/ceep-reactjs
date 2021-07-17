@@ -12,14 +12,21 @@ class FormularioCadastro extends Component {
         this.state = {
             categorias: []
         }
+
+        this._novaCategorias = this._novasCategorias.bind(this)
     }
 
-    componentDidMount(){
-        this.props.categorias.inscrever(this._novasCategorias.bind(this));
+    componentDidMount() {
+        this.props.categorias.inscrever(this._novaCategorias);
+
+    }
+
+    componentWillUnmount() {
+        this.props.categorias.desinscrever(this._novaCategorias)
     }
 
     _novasCategorias(categorias) {
-        this.setState({...this.state, categorias})
+        this.setState({ ...this.state, categorias })
     }
 
     _handlerMudancaTitulo(event) {
@@ -32,7 +39,7 @@ class FormularioCadastro extends Component {
         this.texto = event.target.value;
     }
 
-    _handlerMudancaCategoria(ev){
+    _handlerMudancaCategoria(ev) {
         ev.stopPropagation();
         this.categoria = ev.target.value;
     }
@@ -50,9 +57,9 @@ class FormularioCadastro extends Component {
             <form className="form-cadastro"
                 onSubmit={this._criarNota.bind(this)}
             >
-                <select 
-                onChange={this._handlerMudancaCategoria.bind(this)} 
-                className="form-cadastro_input">
+                <select
+                    onChange={this._handlerMudancaCategoria.bind(this)}
+                    className="form-cadastro_input">
                     <option value="" disabled selected>Sem categoria...</option>
                     {this.state.categorias.map((categoria, index) => {
 
